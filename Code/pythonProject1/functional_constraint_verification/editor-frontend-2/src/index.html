@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Long-tailed Change</title>
+
+  <link rel="stylesheet" href="vendor/bpmn-js/assets/diagram-js.css" />
+  <link rel="stylesheet" href="vendor/bpmn-js/assets/bpmn-js.css" />
+  <link rel="stylesheet" href="vendor/bpmn-js/assets/bpmn-font/css/bpmn-embedded.css" />
+  <link rel="stylesheet" href="vendor/bpmn-js-properties-panel/assets/properties-panel.css" />
+
+  <link rel="stylesheet" href="app.css" />
+</head>
+<body>
+  <div class="content with-diagram" id="js-drop-zone">
+
+    <div class="message intro">
+      <div class="note">
+        Drop BPMN diagram from your desktop or <a id="js-create-diagram" href>create a new diagram</a> to get started.
+      </div>
+    </div>
+
+    <div class="message error">
+      <div class="note">
+        <p>Ooops, we could not display the BPMN 2.0 diagram.</p>
+
+        <div class="details">
+          <span>Import Error Details</span>
+          <pre></pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="canvas" id="js-canvas"></div>
+    <div class="properties-panel-parent" id="js-properties-panel"></div>
+  </div>
+
+  <ul class="buttons">
+    <li>
+      <img alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABACAYAAADs39J0AAAAx3pUWHRSYXcgcHJvZmlsZSB0eXBl
+      IGV4aWYAAHjabVDbDcMwCPxnio5gOOKYcZxHpW7Q8YttUiVRTjIGDh0P2r+fN70ahJV0mku2nJND
+      TU2qOyUN1G45abcdWYPja56OfBJPwX+MsOSoP/L8FxhfdW86CZU1iOVKWHSQchOKRmgTiTtbCFkI
+      QQbBIVBrrGJlPq+w7OmKMh41k9fUF+FQv8c6+/W2yftAZAcjuQV0DID2QKhOiFugFTLMffWoZSwm
+      8YM83ekA/QBNyVnrmmLT+AAAAYRpQ0NQSUNDIHByb2ZpbGUAAHicfZE9SMNAHMVfU8WiFQc7iIhk
+      qC7aRUUcSxWLYKG0FVp1MLn0C5o0JCkujoJrwcGPxaqDi7OuDq6CIPgB4uripOgiJf4vKbSI8eC4
+      H+/uPe7eAUKjwlSzKwqommWk4jExm1sVe14RxCj6MIGAxEw9kV7MwHN83cPH17sIz/I+9+foV/Im
+      A3wicZTphkW8QTy7aemc94lDrCQpxOfEkwZdkPiR67LLb5yLDgs8M2RkUvPEIWKx2MFyB7OSoRLP
+      EIcVVaN8IeuywnmLs1qpsdY9+QuDeW0lzXWaI4hjCQkkIUJGDWVUYCFCq0aKiRTtxzz8w44/SS6Z
+      XGUwciygChWS4wf/g9/dmoXpKTcpGAO6X2z7Ywzo2QWaddv+Prbt5gngfwautLa/2gDmPkmvt7Xw
+      ETCwDVxctzV5D7jcAYaedMmQHMlPUygUgPcz+qYcMHgL9K65vbX2cfoAZKir5Rvg4BAYL1L2use7
+      A529/Xum1d8Pv5Nyxaij8kIAAA12aVRYdFhNTDpjb20uYWRvYmUueG1wAAAAAAA8P3hwYWNrZXQg
+      YmVnaW49Iu+7vyIgaWQ9Ilc1TTBNcENlaGlIenJlU3pOVGN6a2M5ZCI/Pgo8eDp4bXBtZXRhIHht
+      bG5zOng9ImFkb2JlOm5zOm1ldGEvIiB4OnhtcHRrPSJYTVAgQ29yZSA0LjQuMC1FeGl2MiI+CiA8
+      cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRh
+      eC1ucyMiPgogIDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiCiAgICB4bWxuczp4bXBNTT0i
+      aHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIKICAgIHhtbG5zOnN0RXZ0PSJodHRwOi8v
+      bnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VFdmVudCMiCiAgICB4bWxuczpkYz0i
+      aHR0cDovL3B1cmwub3JnL2RjL2VsZW1lbnRzLzEuMS8iCiAgICB4bWxuczpHSU1QPSJodHRwOi8v
+      d3d3LmdpbXAub3JnL3htcC8iCiAgICB4bWxuczp0aWZmPSJodHRwOi8vbnMuYWRvYmUuY29tL3Rp
+      ZmYvMS4wLyIKICAgIHhtbG5zOnhtcD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLyIKICAg
+      eG1wTU06RG9jdW1lbnRJRD0iZ2ltcDpkb2NpZDpnaW1wOjFiNDk1ODgzLTdhYzItNDFiNi04NTMw
+      LTE2MzY3MTRiMjZkNyIKICAgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDowYjRhMGUwMi1lZDVi
+      LTQ2ODEtODY0My1kYjYwNDgxOTgyNjciCiAgIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1w
+      LmRpZDo4ZmUyMmZlNS0xZmIzLTQ1NTAtYTBjZi04OTFmN2EwNDUzYmMiCiAgIGRjOkZvcm1hdD0i
+      aW1hZ2UvcG5nIgogICBHSU1QOkFQST0iMi4wIgogICBHSU1QOlBsYXRmb3JtPSJXaW5kb3dzIgog
+      ICBHSU1QOlRpbWVTdGFtcD0iMTcwMzkzNjYxOTUyNDU1OCIKICAgR0lNUDpWZXJzaW9uPSIyLjEw
+      LjM0IgogICB0aWZmOk9yaWVudGF0aW9uPSIxIgogICB4bXA6Q3JlYXRvclRvb2w9IkdJTVAgMi4x
+      MCIKICAgeG1wOk1ldGFkYXRhRGF0ZT0iMjAyMzoxMjozMFQxOTo0MzozOSswODowMCIKICAgeG1w
+      Ok1vZGlmeURhdGU9IjIwMjM6MTI6MzBUMTk6NDM6MzkrMDg6MDAiPgogICA8eG1wTU06SGlzdG9y
+      eT4KICAgIDxyZGY6U2VxPgogICAgIDxyZGY6bGkKICAgICAgc3RFdnQ6YWN0aW9uPSJzYXZlZCIK
+      ICAgICAgc3RFdnQ6Y2hhbmdlZD0iLyIKICAgICAgc3RFdnQ6aW5zdGFuY2VJRD0ieG1wLmlpZDo5
+      MjNkNzkzNy1mNzMyLTQ0OWItYjJiMy1lN2I2NzViMmFmNzAiCiAgICAgIHN0RXZ0OnNvZnR3YXJl
+      QWdlbnQ9IkdpbXAgMi4xMCAoV2luZG93cykiCiAgICAgIHN0RXZ0OndoZW49IjIwMjMtMTItMzBU
+      MTk6NDM6MzkiLz4KICAgIDwvcmRmOlNlcT4KICAgPC94bXBNTTpIaXN0b3J5PgogIDwvcmRmOkRl
+      c2NyaXB0aW9uPgogPC9yZGY6UkRGPgo8L3g6eG1wbWV0YT4KICAgICAgICAgICAgICAgICAgICAg
+      ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+      ICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+      ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+      ICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+      ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAg
+      ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+      ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAg
+      ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+      ICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+      ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+      ICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+      ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+      IAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+      ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAg
+      ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+      ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAg
+      ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+      ICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+      ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+      ICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+      ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAg
+      ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+      ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAg
+      ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+      ICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+      ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+      ICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+      ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAog
+      ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+      ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAg
+      ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+      ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAg
+      ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+      ICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+      ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+      ICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgIAo8P3hwYWNrZXQgZW5kPSJ3Ij8+FMtzBAAA
+      AAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAAWJQAAFiUBSVIk8AAAAAd0SU1FB+cMHgsrJ22M69QA
+      ABDoSURBVHja7Zx5nBxlmce/T/Ux0z2TzEySSQIEEkwIlwjLgnG5SWqCIucKbtjqBDlUBBHBC9QF
+      NOIKHgiCHOICyTSK4IUYjm4FA0RZAggsdwi5D3J3Zqpnuqfq2T/q7aSY9GSOTE8GyPP59Ke66j3q
+      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
+      qkmhatljTAAAAABJRU5ErkJggg==">
+    </li>
+    <li>
+      <b>Open</b>
+    </li>
+    <li>
+      <input id="open-diagram" type="file">
+    </li>
+    <li>
+      <button id="js-open-diagram">
+        Open
+      </button>
+    </li>
+    <li>
+      <b>Deploy</b>
+    </li>
+    <li>
+      <button id="js-deploy-diagram">
+        Deploy
+      </button>
+    </li>
+    <li>
+      <button id="js-deploy-with-annotations">
+        Deploy with annotations
+      </button>
+    </li>
+    <li>
+      <b>Verify</b>
+    </li>
+    <li>
+      <input id="start-node-name" value="Start">
+    </li>
+    <li>
+      <input id="sli-list" value="T,MIN">
+    </li>
+    <li>
+      <button id="js-verify">
+        Verify
+      </button>
+    </li>
+    <li>
+      <button id="js-verify-clear">
+        Clear conflicts
+      </button>
+    </li>
+    <li>
+      <b>Download</b>
+    </li>
+    <li>
+      <a id="js-download-diagram" href title="download BPMN diagram">
+        BPMN diagram
+      </a>
+    </li>
+    <li>
+      <a id="js-download-svg" href title="download as SVG image">
+        SVG image
+      </a>
+    </li>
+  </ul>
+
+  <script src="app.js"></script>
+</body>
+</html>

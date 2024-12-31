@@ -1,0 +1,21 @@
+<div class="container">
+  <h1>Reaction to Long-tailed Changes</h1>
+  <p><a routerLink="/scenario">Scenarios</a></p>
+  <p>
+    Current scenario:
+    <select [(ngModel)]="processId" (ngModelChange)="setProcessId()">
+      <option *ngFor="let p of scenario.processIds">{{p}}</option>
+    </select>
+  </p>
+  <p><a href="/assets/public-2/index.html">Annotation & Constraint</a></p>
+  <!--  <p><a href="/assets/public/index.html">Annotation</a></p>-->
+  <p><a routerLink="/process-model-list">Process Model</a></p>
+  <p><a routerLink="/process-activity-list">Process Activity</a></p>
+  <p><a routerLink="/process-variable-list">Process Variable</a></p>
+  <!--  <p><a routerLink="/generator">Value Range</a></p>-->
+  <p><a routerLink="/public-api-list">Third-party API</a></p>
+  <p><a routerLink="/controllability-model">Controllability Model</a></p>
+  <p><a routerLink="/instance-migration-list">Instance Migration</a></p>
+  <p><a routerLink="/process-log">Process Log</a></p>
+  <!-- <p><button (click)="startExperiment()">Experiment</button></p> -->
+</div>

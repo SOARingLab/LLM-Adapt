@@ -1,0 +1,14 @@
+<div class="container">
+  <h1>Process log</h1>
+  <p>
+    Business Key:
+    <input [(ngModel)]="businessKey">
+    <button (click)="findByBusinessKey()">Find</button>
+  </p>
+  <p>
+    <span class="column-head">Message</span>
+  </p>
+  <p *ngFor="let processLog of processLogs">
+    <span class="column">{{processLog.message}}</span>
+  </p>
+</div>
