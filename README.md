@@ -5,8 +5,8 @@
 - test1-test12文件夹中分别包含了针对12个不同业务领域的业务流程模型，1-12.csv分别包含了针对每个业务流程模型设计的长尾变化以及预设的长尾变化业务目标
 ### Code文件夹
 - LLM-Adapt的代码实现，功能包括：
-  - BPMN与RPST转换：
-  - RAG检索：rag4c.py与rag4e.py分别针对中文和英文进行了不同检索方案
+  - BPMN与RPST转换
+  - RAG检索：rag4c.py与rag4e.py分别针对中文和英文进行了不同检索方案(示例文档：supporting_document_c、supporting_document_e)
   - LLM应用：使用通义千问QWen-Max API，也支持通义千问其它系列API(修改代码中的model="qwen-max"即可)，采用DASHSCOPE_API_KEY在本地配置自己的API-KEY后即可使用
   - 功能性约束验证
   - SSDT-Lane算法实现
