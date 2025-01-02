@@ -7,7 +7,7 @@
 - LLM-Adapt的代码实现，功能包括：
   - BPMN与RPST转换
   - RAG检索：rag4c.py与rag4e.py分别针对中文和英文进行了不同检索方案(示例文档：supporting_document_c、supporting_document_e)
-  - LLM应用：使用通义千问QWen-Max API，也支持通义千问其它系列API(修改代码中的model="qwen-max"即可)，采用DASHSCOPE_API_KEY在本地配置自己的API-KEY后即可使用
+  - LLM应用：使用通义千问QWen-Max API，也支持通义千问其它系列API(修改代码中的model="qwen-max"即可)
   - 功能性约束验证
   - SSDT-Lane算法实现
 - 可用API请参考：https://help.aliyun.com/zh/model-studio/developer-reference/what-is-qwen-llm?spm=a2c4g.11186623.0.0.74b05941QE3V4v#BQnl3
